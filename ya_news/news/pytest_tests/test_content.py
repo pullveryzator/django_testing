@@ -1,25 +1,26 @@
 from datetime import datetime, timedelta
 
 import pytest
-from django.conf import settings
 from django.utils import timezone
 
 from news.forms import CommentForm
 from news.models import Comment, News
 
 OVER_LIMIT = 1
+NEWS_COUNT_ON_HOME_PAGE = 10
+COMMENT_COUNT_FOR_NEWS_PAGE = 10
 
 
 def test_news_count(author_client, home_url):
     all_news = []
-    for index in range(settings.NEWS_COUNT_ON_HOME_PAGE + OVER_LIMIT):
+    for index in range(NEWS_COUNT_ON_HOME_PAGE + OVER_LIMIT):
         news = News(title=f'Новость {index}', text='Просто текст.')
         all_news.append(news)
         News.objects.bulk_create(all_news)
     response = author_client.get(home_url)
     object_list = response.context['object_list']
     news_count = object_list.count()
-    assert news_count == settings.NEWS_COUNT_ON_HOME_PAGE
+    assert news_count == NEWS_COUNT_ON_HOME_PAGE
 
 
 @pytest.mark.django_db
@@ -31,7 +32,7 @@ def test_news_order(client, home_url):
             text='Текст новости.',
             date=today - timedelta(days=index)
         )
-        for index in range(settings.NEWS_COUNT_ON_HOME_PAGE + OVER_LIMIT)
+        for index in range(NEWS_COUNT_ON_HOME_PAGE + OVER_LIMIT)
     ]
     News.objects.bulk_create(all_news)
     response = client.get(home_url)
@@ -43,7 +44,7 @@ def test_news_order(client, home_url):
 
 def test_comments_order(author, author_client, news, detail_url):
     now = timezone.now()
-    for index in range(settings.COMMENT_COUNT_FOR_NEWS_PAGE):
+    for index in range(COMMENT_COUNT_FOR_NEWS_PAGE):
         comment = Comment.objects.create(
             news=news, author=author, text=f'Комментарий № {index}',
         )
