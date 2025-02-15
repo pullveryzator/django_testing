@@ -1,52 +1,50 @@
-# Django testing  
-## Если вы успели выполнить все домашние задания — ваш финальный проект готов.
-Перенесите тесты из ваших проектов в данный репозиторий (**django_testing**), который появился в вашем аккаунте.  
-В итоге должна получиться следующая структура репозитория:
-```
-Dev
- └── django_testing
-     ├── ya_news
-     │   ├── news
-     │   │   ├── fixtures/
-     │   │   ├── migrations/
-     │   │   ├── pytest_tests/   <- Директория с вашими тестами pytest для проекта ya_news
-     │   │   ├── __init__.py
-     │   │   ├── admin.py
-     │   │   ├── apps.py
-     │   │   ├── forms.py
-     │   │   ├── models.py
-     │   │   ├── urls.py
-     │   │   └── views.py
-     │   ├── templates/
-     │   ├── yanews/
-     │   ├── manage.py
-     │   └── pytest.ini
-     ├── ya_note
-     │   ├── notes
-     │   │   ├── migrations/
-     │   │   ├── tests/          <- Директория с вашими тестами unittest для проекта ya_note
-     │   │   ├── __init__.py
-     │   │   ├── admin.py
-     │   │   ├── apps.py
-     │   │   ├── forms.py
-     │   │   ├── models.py
-     │   │   ├── urls.py
-     │   │   └── views.py
-     │   ├── templates/
-     │   ├── yanote/
-     │   ├── manage.py
-     │   └── pytest.ini
-     ├── .gitignore
-     ├── README.md
-     ├── requirements.txt
-     └── structure_test.py
-```
+# Django Testing Project
 
-## После копирования тестов, написанных в ходе прохождения спринта, для проверки готовности проекта к сдаче необходимо выполнить 4 действия:
-1. Создать и активировать виртуальное окружение; установить зависимости из файла `requirements.txt`;
-2. Запустить скрипт для `run_tests.sh` из корневой директории проекта:
-```sh
-bash run_tests.sh
-```
+Этот проект предназначен для тестирования двух Django-приложений: **yanews** и **yanote**. В проекте используются два популярных инструмента для тестирования: **unittest** (для `yanote`) и **pytest** (для `yanews`).
 
-**Если все проверки успешно выполнились, проект можно отправлять на ревью.**
+## Структура проекта
+
+- **Dev/**
+  - **django_testing/** — корневая директория проекта.
+    - **ya_news/** — проект `yanews`.
+      - **news/** — приложение для управления новостями.
+        - `fixtures/` — фикстуры для базы данных.
+        - `migrations/` — миграции базы данных.
+        - **pytest_tests/** — директория с тестами pytest для `yanews`.
+        - `__init__.py`
+        - `admin.py`
+        - `apps.py`
+        - `forms.py`
+        - `models.py`
+        - `urls.py`
+        - `views.py`
+      - `templates/` — шаблоны для отображения страниц.
+      - **yanews/** — основная конфигурация проекта.
+      - `manage.py` — скрипт для управления проектом.
+      - `pytest.ini` — конфигурация pytest.
+    - **ya_note/** — проект `yanote`.
+      - **notes/** — приложение для управления заметками.
+        - `migrations/` — миграции базы данных.
+        - **tests/** — директория с тестами unittest для `yanote`.
+        - `__init__.py`
+        - `admin.py`
+        - `apps.py`
+        - `forms.py`
+        - `models.py`
+        - `urls.py`
+        - `views.py`
+      - `templates/` — шаблоны для отображения страниц.
+      - **yanote/** — основная конфигурация проекта.
+      - `manage.py` — скрипт для управления проектом.
+      - `pytest.ini` — конфигурация pytest.
+    - `.gitignore` — список файлов и папок, скрытых от отслеживания Git.
+    - `README.md` — описание проекта.
+    - `requirements.txt` — список зависимостей проекта.
+    - `structure_test.py` — тесты для проверки структуры проекта.
+
+## Установка и запуск проекта
+
+1. **Клонируйте репозиторий**:
+   ```bash
+   git clone https://github.com/pullveryzator/django_testing.git
+   cd django_testing
